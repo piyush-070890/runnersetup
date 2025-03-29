@@ -4,14 +4,13 @@ name: TestingonMachine
 on: 
     workflow_dispatch
 jobs:
-    print_hello
-        runs-on: piyushubuntu
-        steps:
-            -name: checkoutRepo
-             uses: actions/checkout@v4
-
-            -name: create a file
-             run: echo "Hello piyush" > test.txt
+    print_hello:
+      runs-on: piyushubuntu
+      steps:
+            - name: checkoutRepo
+              uses: actions/checkout@v4
+            - name: CreatingFile
+              run: echo "Hello piyush" > test.txt
 
 
 
