@@ -5,7 +5,7 @@ on:
     workflow_dispatch
 jobs:
     print_hello:
-      runs-on: piyushminipc-ubuntu
+      runs-on: self-hosted
       steps:
             - name: checkoutRepo
               uses: actions/checkout@v4
