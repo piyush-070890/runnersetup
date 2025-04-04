@@ -5,7 +5,7 @@ on:
     workflow_dispatch
 jobs:
     print_hello:
-      runs-on: macubuntu
+      runs-on: piyushminipc-ubuntu
       steps:
             - name: checkoutRepo
               uses: actions/checkout@v4
