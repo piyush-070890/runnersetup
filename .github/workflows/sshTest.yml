@@ -11,11 +11,10 @@ jobs:
     steps:
      - name: Doing ssh
        run: |
-        mkdir ~/.ssh/
-        echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> ~/.ssh/id_rsa_gh
+        chmod 600 ~/.ssh/id_rsa_gh
         ssh-keyscan -H localhost >> ~/.ssh/known_hosts
         
      - name: Run command on localhost over SSH
        run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no piyush@localhost "echo 'Hello from SSH'; hostname"
+        ssh -i ~/.ssh/id_rsa_gh -o StrictHostKeyChecking=no piyush@localhost "echo 'Hello from SSH'; hostname"
