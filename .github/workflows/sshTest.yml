@@ -12,10 +12,10 @@ jobs:
      - name: Doing ssh
        run: |
         mkdir ~/.ssh/
-        echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H localhost >> ~/.ssh/known_hosts
+        echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> ~/.ssh1/id_rsa
+        chmod 600 ~/.ssh1/id_rsa
+        ssh-keyscan -H localhost >> ~/.ssh1/known_hosts
         
      - name: Run command on localhost over SSH
        run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no piyush@localhost "echo 'Hello from SSH'; hostname"
+        ssh -i ~/.ssh1/id_rsa -o StrictHostKeyChecking=no piyush@localhost "echo 'Hello from SSH'; hostname"
