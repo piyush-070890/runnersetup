@@ -17,4 +17,10 @@ jobs:
         
      - name: Run command on localhost over SSH
        run: |
-        ssh -i ~/.ssh/id_rsa_gh -o StrictHostKeyChecking=no piyush@localhost "echo 'Hello from SSH'; hostname"
+        ssh -i ~/.ssh/id_rsa_gh -o StrictHostKeyChecking=no piyush@localhost << 'EOF'
+        hostname
+        pwd
+        ifconfig
+        ps -lef
+        echo "All command finished"
+        EOF
