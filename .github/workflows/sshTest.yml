@@ -11,7 +11,7 @@ jobs:
     steps:
      - name: Doing ssh
        run: |
-        mkdir ~/.ssh/
+        mkdir ~/.ssh1/
         echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> ~/.ssh1/id_rsa
         chmod 600 ~/.ssh1/id_rsa
         ssh-keyscan -H localhost >> ~/.ssh1/known_hosts
