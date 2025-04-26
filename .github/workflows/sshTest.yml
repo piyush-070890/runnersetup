@@ -26,3 +26,4 @@ jobs:
         ps -lef
         echo "All command finished"
         EOF
+       shell: bash
