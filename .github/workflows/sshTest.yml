@@ -19,7 +19,7 @@ jobs:
         
      - name: Run command on localhost over SSH
        run: |
-        ssh -i ~/.ssh/id_rsa_gh -o StrictHostKeyChecking=no $USER@localhost << 'EOF'
+        ssh -i ~/.ssh/id_rsa_gh -o StrictHostKeyChecking=no ${{ vars.USERNAME }}@localhost << 'EOF'
         hostname
         pwd
         ifconfig
