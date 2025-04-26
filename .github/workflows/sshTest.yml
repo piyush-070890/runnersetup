@@ -6,7 +6,7 @@ on:
 
 jobs:
   Settingupssh:
-    runs-on: macrunner
+    runs-on: self-hosted
     env:
       USER: ${{ vars.USERNAME }}
     steps:
