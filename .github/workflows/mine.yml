@@ -1,36 +1,32 @@
 ---
 name: TestingonMachine
 
+on:
+  workflow_dispatch:
 
-on: 
-    workflow_dispatch
 jobs:
-    print_hello:
-      runs-on: self-hosted
-      steps:
-            - name: checkoutRepo
-              uses: actions/checkout@v4
-             
-            - uses: paulhatch/semantic-version@v5.4.0
-              with:
-                    tag_prefix: "v"
-                    major_pattern: "/!:|BREAKING CHANGE:/"
-                    # A string which indicates the flags used by the `major_pattern` regular expression. Supported flags: idgs
-                    major_regexp_flags: ""
-                    # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
-                    minor_pattern: "/feat:/"
-                    # A string which indicates the flags used by the `minor_pattern` regular expression. Supported flags: idgs
-                    minor_regexp_flags: ""
-                    # A string to determine the format of the version output
-                    version_format: "${major}.${minor}.${patch}-prerelease${increment}"
-                    
-            - name: CreatingFile
-              run: |
-                  echo "Hello piyush" > test.txt
-                  a=$( ifconfig )
-                  echo "IFCONFIG is $a"
-                  
+  print_hello:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # ✅ important
 
+      - name: Calculate Semantic Version
+        id: version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"  # ✅ add if you use v1.0.0 tags
+          major_pattern: "/!:|BREAKING CHANGE:/"
+          minor_pattern: "/feat:/"
+          version_format: "${major}.${minor}.${patch}-prerelease${increment}"
 
+      - name: Print calculated version
+        run: echo "New version is ${{ steps.version.outputs.version }}"
 
-
+      - name: Creating File
+        run: |
+          echo "Hello piyush" > test.txt
+          a=$(ifconfig)
+          echo "IFCONFIG is $a"
