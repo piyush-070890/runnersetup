@@ -10,8 +10,10 @@ jobs:
       steps:
             - name: checkoutRepo
               uses: actions/checkout@v4
+             
             - uses: paulhatch/semantic-version@v5.4.0
               with:
+                    tag_prefix: "v"
                     major_pattern: "/!:|BREAKING CHANGE:/"
                     # A string which indicates the flags used by the `major_pattern` regular expression. Supported flags: idgs
                     major_regexp_flags: ""
