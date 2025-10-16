@@ -1,6 +1,9 @@
 ---
 name: TestingonMachine
 
+permissions:
+  contents: write 
+
 on:
   workflow_dispatch:
 
