@@ -29,4 +29,5 @@ jobs:
         run: |
           echo "Hello piyush" > test.txt
           a=$(ifconfig)
+          pwd
           echo "IFCONFIG is $a"
