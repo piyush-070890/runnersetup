@@ -6,6 +6,7 @@ permissions:
 on:
   workflow_dispatch:
 
+
 jobs:
   print_hello:
     runs-on: self-hosted
