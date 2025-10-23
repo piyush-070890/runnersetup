@@ -2,8 +2,7 @@
 name: TestingonMachine
 
 permissions:
-  contents: write 
-
+  contents: write
 on:
   workflow_dispatch:
 
