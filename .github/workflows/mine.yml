@@ -1,41 +1,28 @@
----
-name: TestingonMachine
+
+name: GetPRadded
+
+on:
+    pull_request:
+      types: [opened,synchronize, reopened]
 
 permissions:
-  contents: write
-on:
-  workflow_dispatch:
-
+    contents: read
+    pull-requests: write
 
 jobs:
-  print_hello:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # ✅ important
+    review:
+        runs-on : all
 
-      - name: Calculate Semantic Version
-        id: version
-        uses: paulhatch/semantic-version@v5.4.0
-        with:
-          tag_prefix: "v"  # ✅ add if you use v1.0.0 tags
-          major_pattern: "/!:|BREAKING CHANGE:/"
-          minor_pattern: "/feat:/"
-          version_format: "${major}.${minor}.${patch}-prerelease${increment}"
-      - name: Push new tag
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag v${{ steps.version.outputs.version }}
-          git push origin v${{ steps.version.outputs.version }}    
+        steps:
+        - name: Checkout Code
+          uses: actions/checkout@v4
+          with: 
+            fetch-depth: "0"
+        
+        - name: GetPRdiff
+          id: diff
+          run : |
+            git fetch origin ${{github.base_ref}}
+            git diff origin/${{ github.base_ref }}...HEAD > pr.diff
+            cat pr.diff
 
-      - name: Print calculated version
-        run: echo "New version is ${{ steps.version.outputs.version }}"
-
-      - name: Creating File
-        run: |
-          echo "Hello piyush" > test.txt
-          a=$(ifconfig)
-          echo "IFCONFIG is $a"
