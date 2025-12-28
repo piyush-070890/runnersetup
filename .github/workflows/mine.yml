@@ -11,8 +11,8 @@ permissions:
 
 jobs:
     review:
-        runs-on : all
-
+        runs-on : self-hosted
+        
         steps:
         - name: Checkout Code
           uses: actions/checkout@v4
