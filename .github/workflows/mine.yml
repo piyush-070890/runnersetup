@@ -25,4 +25,7 @@ jobs:
             git fetch origin ${{github.base_ref}}
             git diff origin/${{ github.base_ref }}...HEAD > pr.diff
             cat pr.diff
-
+        - name: ListContent
+          run: |
+            ls -ltr
+            echo " is the content"
