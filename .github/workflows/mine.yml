@@ -11,7 +11,7 @@ permissions:
 
 jobs:
     review:
-        runs-on : all
+        runs-on : self-hosted
 
         steps:
         - name: Checkout Code
@@ -25,4 +25,9 @@ jobs:
             git fetch origin ${{github.base_ref}}
             git diff origin/${{ github.base_ref }}...HEAD > pr.diff
             cat pr.diff
+
+        - name: RunLLM
+          run : |
+            echo "First printing the content"
+            ls -ltr
 
